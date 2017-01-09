@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        version="3.0">
+
+        <display-name></display-name>
+
+        <!-- ==================================================================================== -->
+        <!-- tomcat启动的时候，就会加载listener和Context-params信息 -->
+        <!-- 加载spring -->
+        <listener>
+                <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        </listener>
+        <!-- 指定listener要加载的配置文件名称，如果不指定则默认加载WEB-INF中的applicationContext.xml -->
+        <context-param>
+                <param-name>contextConfigLocation</param-name>
+                <param-value>classpath*:applicationContext.xml</param-value>
+        </context-param>
+        <!-- ==================================================================================== -->
+        <!-- 多环境配置(开发测试环境切换) -->
+        <context-param>
+                <param-name>spring.profiles.active</param-name>
+                <param-value>production</param-value>
+        </context-param>
+        <!-- ==================================================================================== -->
+        <!-- servlet过滤优先级 -->
+        <!-- 1.精确路径匹配 -->
+        <!-- 例子：访问的路径为：/test , 如果有/* 和 /test 的话,优先匹配/test -->
+        <!-- 2.最长路径匹配 -->
+        <!-- 例子：访问的路径为：/test/a,如果有/test/*和/test/a/*的话,优先匹配/test/a/* -->
+        <!-- 3.扩展匹配 -->
+        <!-- 例子：根据拦截的扩展名进行匹配 -->
+        <!-- 4.默认匹配 -->
+        <!-- 例子：如果前三点都匹配不上的话,使用默认匹配 =>默认配置为/ -->
+        <servlet>
+                <servlet-name>Dispatcher</servlet-name>
+                <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+                <!-- context-param 和 init-param 区别 -->
+                <!-- context-param 在application范围内的参数，存放在servletcontext中 -->
+                <!-- init-param 是servlet范围内的参数，只能在servlet的init方法中取到 -->
+                <init-param>
+                        <param-name>contextConfigLocation</param-name>
+                        <param-value>/WEB-INF/springmvc.xml</param-value>
+                </init-param>
+        </servlet>
+        <servlet-mapping>
+                <servlet-name>Dispatcher</servlet-name>
+                <url-pattern>/</url-pattern>
+        </servlet-mapping>
+        <!-- ==================================================================================== -->
+        <!-- 定义请求编码 -->
+        <!-- encoding 表示request请求时候的编码格式 -->
+        <!-- forceEncoding 表示response请求时候的编码格式,如果为true，表示和request保持一致 -->
+        <filter>
+                <filter-name>encodingFilter</filter-name>
+                <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+                <init-param>
+                        <param-name>encoding</param-name>
+                        <param-value>UTF-8</param-value>
+                </init-param>
+                <init-param>
+                        <param-name>forceEncoding</param-name>
+                        <param-value>true</param-value>
+                </init-param>
+        </filter>
+        <filter-mapping>
+                <filter-name>encodingFilter</filter-name>
+                <url-pattern>/*</url-pattern>
+        </filter-mapping>
+        <!-- ==================================================================================== -->
+</web-app>
