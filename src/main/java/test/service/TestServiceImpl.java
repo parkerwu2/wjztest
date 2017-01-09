@@ -6,6 +6,7 @@ import test.IDao.IwAgentMapper;
 import test.domain.IwAgent;
 import test.domain.IwAgentExample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +19,11 @@ public class TestServiceImpl {
     public List<IwAgent> query(List<Long> ids) {
         IwAgentExample example = new IwAgentExample();
         example.createCriteria().andIdIn(ids);
-        return iwAgentMapper.selectByExample(example);
+        try {
+            return iwAgentMapper.selectByExample(example);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<IwAgent>();
     }
 }

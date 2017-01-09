@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="test.mapping.IwAgentMapper" >
+<mapper namespace="test.IDao.IwAgentMapper" >
   <resultMap id="BaseResultMap" type="test.domain.IwAgent" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="city_id" property="cityId" jdbcType="BIGINT" />

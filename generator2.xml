@@ -21,7 +21,7 @@
         <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="test.mapping" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="test.IDao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
