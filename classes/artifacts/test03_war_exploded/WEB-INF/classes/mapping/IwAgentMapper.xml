@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.IwAgentMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.IwAgent" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="big_area_id" property="bigAreaId" jdbcType="BIGINT" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
+    <result column="employee_id" property="employeeId" jdbcType="VARCHAR" />
+    <result column="join_date" property="joinDate" jdbcType="DATE" />
+    <result column="serial_number" property="serialNumber" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="encrypter_mobile" property="encrypterMobile" jdbcType="VARCHAR" />
+    <result column="photo_url" property="photoUrl" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="account_type" property="accountType" jdbcType="TINYINT" />
+    <result column="team_type" property="teamType" jdbcType="TINYINT" />
+    <result column="level_type" property="levelType" jdbcType="TINYINT" />
+    <result column="uid" property="uid" jdbcType="BIGINT" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="biz_type" property="bizType" jdbcType="TINYINT" />
+    <result column="weixin_bind_state" property="weixinBindState" jdbcType="TINYINT" />
+    <result column="ifEverCheat" property="ifevercheat" jdbcType="INTEGER" />
+    <result column="tempClosed" property="tempclosed" jdbcType="TINYINT" />
+    <result column="leave_date" property="leaveDate" jdbcType="VARCHAR" />
+    <result column="tempClosed_time" property="tempclosedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, city_id, big_area_id, uname, employee_id, join_date, serial_number, password, 
+    mobile, encrypter_mobile, photo_url, update_time, create_time, memo, status, account_type, 
+    team_type, level_type, uid, gender, biz_type, weixin_bind_state, ifEverCheat, tempClosed, 
+    leave_date, tempClosed_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="test.domain.IwAgentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from iw_agent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from iw_agent
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from iw_agent
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="test.domain.IwAgentExample" >
+    delete from iw_agent
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test.domain.IwAgent" >
+    insert into iw_agent (id, city_id, big_area_id, 
+      uname, employee_id, join_date, 
+      serial_number, password, mobile, 
+      encrypter_mobile, photo_url, update_time, 
+      create_time, memo, status, 
+      account_type, team_type, level_type, 
+      uid, gender, biz_type, 
+      weixin_bind_state, ifEverCheat, tempClosed, 
+      leave_date, tempClosed_time)
+    values (#{id,jdbcType=BIGINT}, #{cityId,jdbcType=BIGINT}, #{bigAreaId,jdbcType=BIGINT}, 
+      #{uname,jdbcType=VARCHAR}, #{employeeId,jdbcType=VARCHAR}, #{joinDate,jdbcType=DATE}, 
+      #{serialNumber,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{encrypterMobile,jdbcType=VARCHAR}, #{photoUrl,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{accountType,jdbcType=TINYINT}, #{teamType,jdbcType=TINYINT}, #{levelType,jdbcType=TINYINT}, 
+      #{uid,jdbcType=BIGINT}, #{gender,jdbcType=TINYINT}, #{bizType,jdbcType=TINYINT}, 
+      #{weixinBindState,jdbcType=TINYINT}, #{ifevercheat,jdbcType=INTEGER}, #{tempclosed,jdbcType=TINYINT}, 
+      #{leaveDate,jdbcType=VARCHAR}, #{tempclosedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.IwAgent" >
+    insert into iw_agent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="bigAreaId != null" >
+        big_area_id,
+      </if>
+      <if test="uname != null" >
+        uname,
+      </if>
+      <if test="employeeId != null" >
+        employee_id,
+      </if>
+      <if test="joinDate != null" >
+        join_date,
+      </if>
+      <if test="serialNumber != null" >
+        serial_number,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="encrypterMobile != null" >
+        encrypter_mobile,
+      </if>
+      <if test="photoUrl != null" >
+        photo_url,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="accountType != null" >
+        account_type,
+      </if>
+      <if test="teamType != null" >
+        team_type,
+      </if>
+      <if test="levelType != null" >
+        level_type,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="bizType != null" >
+        biz_type,
+      </if>
+      <if test="weixinBindState != null" >
+        weixin_bind_state,
+      </if>
+      <if test="ifevercheat != null" >
+        ifEverCheat,
+      </if>
+      <if test="tempclosed != null" >
+        tempClosed,
+      </if>
+      <if test="leaveDate != null" >
+        leave_date,
+      </if>
+      <if test="tempclosedTime != null" >
+        tempClosed_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="bigAreaId != null" >
+        #{bigAreaId,jdbcType=BIGINT},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="joinDate != null" >
+        #{joinDate,jdbcType=DATE},
+      </if>
+      <if test="serialNumber != null" >
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="encrypterMobile != null" >
+        #{encrypterMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="photoUrl != null" >
+        #{photoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="accountType != null" >
+        #{accountType,jdbcType=TINYINT},
+      </if>
+      <if test="teamType != null" >
+        #{teamType,jdbcType=TINYINT},
+      </if>
+      <if test="levelType != null" >
+        #{levelType,jdbcType=TINYINT},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="bizType != null" >
+        #{bizType,jdbcType=TINYINT},
+      </if>
+      <if test="weixinBindState != null" >
+        #{weixinBindState,jdbcType=TINYINT},
+      </if>
+      <if test="ifevercheat != null" >
+        #{ifevercheat,jdbcType=INTEGER},
+      </if>
+      <if test="tempclosed != null" >
+        #{tempclosed,jdbcType=TINYINT},
+      </if>
+      <if test="leaveDate != null" >
+        #{leaveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tempclosedTime != null" >
+        #{tempclosedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update iw_agent
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bigAreaId != null" >
+        big_area_id = #{record.bigAreaId,jdbcType=BIGINT},
+      </if>
+      <if test="record.uname != null" >
+        uname = #{record.uname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeId != null" >
+        employee_id = #{record.employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joinDate != null" >
+        join_date = #{record.joinDate,jdbcType=DATE},
+      </if>
+      <if test="record.serialNumber != null" >
+        serial_number = #{record.serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.encrypterMobile != null" >
+        encrypter_mobile = #{record.encrypterMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoUrl != null" >
+        photo_url = #{record.photoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.accountType != null" >
+        account_type = #{record.accountType,jdbcType=TINYINT},
+      </if>
+      <if test="record.teamType != null" >
+        team_type = #{record.teamType,jdbcType=TINYINT},
+      </if>
+      <if test="record.levelType != null" >
+        level_type = #{record.levelType,jdbcType=TINYINT},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=BIGINT},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=TINYINT},
+      </if>
+      <if test="record.bizType != null" >
+        biz_type = #{record.bizType,jdbcType=TINYINT},
+      </if>
+      <if test="record.weixinBindState != null" >
+        weixin_bind_state = #{record.weixinBindState,jdbcType=TINYINT},
+      </if>
+      <if test="record.ifevercheat != null" >
+        ifEverCheat = #{record.ifevercheat,jdbcType=INTEGER},
+      </if>
+      <if test="record.tempclosed != null" >
+        tempClosed = #{record.tempclosed,jdbcType=TINYINT},
+      </if>
+      <if test="record.leaveDate != null" >
+        leave_date = #{record.leaveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tempclosedTime != null" >
+        tempClosed_time = #{record.tempclosedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update iw_agent
+    set id = #{record.id,jdbcType=BIGINT},
+      city_id = #{record.cityId,jdbcType=BIGINT},
+      big_area_id = #{record.bigAreaId,jdbcType=BIGINT},
+      uname = #{record.uname,jdbcType=VARCHAR},
+      employee_id = #{record.employeeId,jdbcType=VARCHAR},
+      join_date = #{record.joinDate,jdbcType=DATE},
+      serial_number = #{record.serialNumber,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      encrypter_mobile = #{record.encrypterMobile,jdbcType=VARCHAR},
+      photo_url = #{record.photoUrl,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      account_type = #{record.accountType,jdbcType=TINYINT},
+      team_type = #{record.teamType,jdbcType=TINYINT},
+      level_type = #{record.levelType,jdbcType=TINYINT},
+      uid = #{record.uid,jdbcType=BIGINT},
+      gender = #{record.gender,jdbcType=TINYINT},
+      biz_type = #{record.bizType,jdbcType=TINYINT},
+      weixin_bind_state = #{record.weixinBindState,jdbcType=TINYINT},
+      ifEverCheat = #{record.ifevercheat,jdbcType=INTEGER},
+      tempClosed = #{record.tempclosed,jdbcType=TINYINT},
+      leave_date = #{record.leaveDate,jdbcType=VARCHAR},
+      tempClosed_time = #{record.tempclosedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test.domain.IwAgent" >
+    update iw_agent
+    <set >
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="bigAreaId != null" >
+        big_area_id = #{bigAreaId,jdbcType=BIGINT},
+      </if>
+      <if test="uname != null" >
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeId != null" >
+        employee_id = #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="joinDate != null" >
+        join_date = #{joinDate,jdbcType=DATE},
+      </if>
+      <if test="serialNumber != null" >
+        serial_number = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="encrypterMobile != null" >
+        encrypter_mobile = #{encrypterMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="photoUrl != null" >
+        photo_url = #{photoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="accountType != null" >
+        account_type = #{accountType,jdbcType=TINYINT},
+      </if>
+      <if test="teamType != null" >
+        team_type = #{teamType,jdbcType=TINYINT},
+      </if>
+      <if test="levelType != null" >
+        level_type = #{levelType,jdbcType=TINYINT},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="bizType != null" >
+        biz_type = #{bizType,jdbcType=TINYINT},
+      </if>
+      <if test="weixinBindState != null" >
+        weixin_bind_state = #{weixinBindState,jdbcType=TINYINT},
+      </if>
+      <if test="ifevercheat != null" >
+        ifEverCheat = #{ifevercheat,jdbcType=INTEGER},
+      </if>
+      <if test="tempclosed != null" >
+        tempClosed = #{tempclosed,jdbcType=TINYINT},
+      </if>
+      <if test="leaveDate != null" >
+        leave_date = #{leaveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tempclosedTime != null" >
+        tempClosed_time = #{tempclosedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.domain.IwAgent" >
+    update iw_agent
+    set city_id = #{cityId,jdbcType=BIGINT},
+      big_area_id = #{bigAreaId,jdbcType=BIGINT},
+      uname = #{uname,jdbcType=VARCHAR},
+      employee_id = #{employeeId,jdbcType=VARCHAR},
+      join_date = #{joinDate,jdbcType=DATE},
+      serial_number = #{serialNumber,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      encrypter_mobile = #{encrypterMobile,jdbcType=VARCHAR},
+      photo_url = #{photoUrl,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      memo = #{memo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      account_type = #{accountType,jdbcType=TINYINT},
+      team_type = #{teamType,jdbcType=TINYINT},
+      level_type = #{levelType,jdbcType=TINYINT},
+      uid = #{uid,jdbcType=BIGINT},
+      gender = #{gender,jdbcType=TINYINT},
+      biz_type = #{bizType,jdbcType=TINYINT},
+      weixin_bind_state = #{weixinBindState,jdbcType=TINYINT},
+      ifEverCheat = #{ifevercheat,jdbcType=INTEGER},
+      tempClosed = #{tempclosed,jdbcType=TINYINT},
+      leave_date = #{leaveDate,jdbcType=VARCHAR},
+      tempClosed_time = #{tempclosedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
