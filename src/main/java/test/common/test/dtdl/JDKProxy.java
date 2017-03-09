@@ -11,7 +11,6 @@ interface TargetInterface {
     public void say(String name);
 }
 class Target implements TargetInterface{
-    @Override
     public void say(String x) {
         System.out.println("I am " + x);
     }
