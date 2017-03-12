@@ -12,4 +12,8 @@
     <!--自动扫描含有@Service将其注入为bean -->
     <context:component-scan base-package="test.service,test.common" />
 
+    <bean id="nettyClient" class="client.SimpleChatClient" >
+        <constructor-arg name="host" value="127.0.0.1"/>
+        <constructor-arg name="port" value="8080"/>
+    </bean>
 </beans>

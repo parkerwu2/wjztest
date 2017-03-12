@@ -224,6 +224,12 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.24</version>
         </dependency>
+
+        <dependency>
+            <groupId>mynetty</groupId>
+            <artifactId>mynett</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 
