@@ -27,7 +27,7 @@ public class JmsTestController {
     @Autowired
     private ProducerServiceImpl producerService;
     @Autowired
-    @Qualifier("queueDestination")
+    @Qualifier("topicDestination")
     private Destination destination;
 
     @RequestMapping("test")
